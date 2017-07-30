@@ -3,12 +3,16 @@
 import Vue from 'vue';
 import App from './App';
 
-
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+const router = new VueRouter();
 
 Vue.config.productionTip = false
 import Icon from 'vue-svg-icon/Icon.vue';
 Vue.component('icon', Icon);
 /* eslint-disable no-new */
+
+
 new Vue({
     el: '#app',
     template: '<App/>',
