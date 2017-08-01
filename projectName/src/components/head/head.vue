@@ -1,16 +1,17 @@
 <template>
 <div class="header">
-  <span class="side"  @click="side">
+  <span class="side"  @click="side" >
     <i class="fa fa-align-justify"></i>
   </span>
 
-  <span class="music" @click="music">
-    <icon name="music" scale="3"  ></icon>
+  <span class="music" @click="music" >
+    <router-link to="/content"> <icon name="music" scale="3"  ></icon></router-link>
+   
   </span>
 
-<span class="search" @click="search">
-  <i class="fa fa-search">
-  </i>
+<span class="search" @click="search" >
+  <router-link to="/search"><i class="fa fa-search">  </i></router-link>
+
 
 </span>
 

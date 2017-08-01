@@ -4,10 +4,10 @@
             <span>首页</span>
 
         </li>
-        <li class="song-list">
+        <li class="song-list" >
             <span>歌单</span>
         </li>
-        <li class="ranking-list">
+        <li class="ranking-list" >
             <span>排行榜</span>
 
         </li>

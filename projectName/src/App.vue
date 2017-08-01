@@ -3,7 +3,9 @@
 <div id="app">
   
 <vhead></vhead>
-<vmenu></vmenu>
+
+<router-view></router-view>
+
 
 </div>
  
@@ -11,12 +13,12 @@
 
 <script>
 import vhead from './components/head/head';
-import vmenu from './components/menu/menu';
+
 export default {
   name: 'app',
   components: {
     vhead,
-    vmenu,
+    
   }
 }
 </script>

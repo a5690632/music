@@ -3,9 +3,27 @@
 import Vue from 'vue';
 import App from './App';
 
+import content from "./components/content/content.vue"
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-const router = new VueRouter();
+const routes=[
+  {     
+        path:'/content',
+        component: content,
+
+    }
+
+
+
+]
+const router = new VueRouter ({
+   
+routes
+
+
+})
+
+
 
 Vue.config.productionTip = false
 import Icon from 'vue-svg-icon/Icon.vue';
@@ -14,7 +32,9 @@ Vue.component('icon', Icon);
 
 
 new Vue({
+  
     el: '#app',
+    router,
     template: '<App/>',
     components: { App }
 })
