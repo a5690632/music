@@ -1,14 +1,14 @@
 <template>
   <ul class="menu">
         <li class="index" >
-            <span>首页</span>
+              <router-link to="/content/index" class="tab">首页 </router-link>
 
         </li>
         <li class="song-list" >
-            <span>歌单</span>
+          <router-link to="/content/list"  class="tab">歌单 </router-link>
         </li>
         <li class="ranking-list" >
-            <span>排行榜</span>
+           <router-link to="/content/rank"  class="tab">排行榜 </router-link>
 
         </li>
 
@@ -30,22 +30,34 @@ name: 'menu',
 }
 </script>
 
-<style>
+<style lang="less">
+
+
+
+    @rem:40rem;
     .menu{
           width:100% ;
-          height:38px ;
+          height:60/@rem ;
           display: flex;
             
 
     }
     .menu li{
-        height:38px;
+        height:60/@rem;
         flex: 1;
         text-align: center;
-        line-height:38px ;
-        color:#656565 ;
-        font-size:14px ;
+        line-height:60/@rem;
+        font-size: 22/@rem;
+  
 
     }
+     .menu li a{
+        color:#656565 ;
 
+     }
+     .menu li .active{
+        color:red;
+
+
+     }
 </style>

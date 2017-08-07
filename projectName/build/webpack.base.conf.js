@@ -21,16 +21,20 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
+            'components': resolve('src/components'),
         }
     },
     module: {
 
-        rules: [{
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file-loader'
-            },
+        rules: [
+            {
 
+            test: /\.less$/,
+
+            loader: "style-loader!css-loader!less-loader",
+
+            },
 
 
             {
@@ -41,13 +45,7 @@ module.exports = {
 
             },
 
-            {
-
-                test: /\.less$/,
-
-                loader: "style-loader!css-loader!less-loader",
-
-            },
+          
 
             {
                 test: /\.vue$/,

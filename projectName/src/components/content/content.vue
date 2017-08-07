@@ -2,7 +2,7 @@
     <div id="content">
   
         <vmenu></vmenu>
-        
+        <router-view name="index"></router-view>
     </div>
 </template>
 <script>

@@ -5,7 +5,7 @@
   </span>
 
   <span class="music" @click="music" >
-    <router-link to="/content"> <icon name="music" scale="3"  ></icon></router-link>
+    <router-link to="/content"><img src="./music.png"></router-link></router-link>
    
   </span>
 
@@ -29,7 +29,7 @@ export default {
   },
   methods:{
     side(){
-       
+        this.$emit("side" ,"true")
 
     },
     music(){
@@ -47,53 +47,57 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="less">
+     @rem:40rem;
     .header{
       width:100% ;
-      height:50px ;
+      height:120/@rem;
       background-color:#d33a32 ;
       position: relative;
 
     }
     .side{
         position: absolute;
-        width:28px; ;
-        height:18px ;
-        left: 15px;
-        top:17px ;
+        width:32/@rem; ;
+        height:32/@rem ;
+        left: 22/@rem;
+        top:60/@rem ;
 
 
     }
     .side i{
-      width:24px ;
-      height:15px ;
+      width:32/@rem ;
+      height:32/@rem ;
       color:white ;
 
     }
     .music{
-        width:28px ;
+      
         position: absolute;
-        height:18px ;
+      
         left:50% ;
-        top:50% ;
-        margin-left:-14px ;
-        margin-top: -9px;
-        color:white ;
+
+        margin-left:-30/@rem ;
+        margin-top: 60/@rem;
+      
     }
-    
+    img{
+       width: 60/@rem;
+       height: 60/@rem;
+        
+    }
     .search{
-        width:28px; ;
-        height:18px ;
+        width:32/@rem; 
+        height:32/@rem ;
         position: absolute;
-       right: 14px;
-        top: 17px;
+        right: 22/@rem;
+        top: 60/@rem;
 
 
     }
     .search i{
-      width:24px ;
-      height:15px ;
+      width:32/@rem ;
+      height:32/@rem ;
       color:white ;
 
     }
