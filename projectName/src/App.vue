@@ -1,22 +1,21 @@
 <template>
-
-<div id="app">
-<side v-show="side"></side>
-<vhead></vhead>
-
-<router-view></router-view>
-<play></play>
-
-</div>
- 
+  <div id="app">
+    <side v-show="side"></side>
+    <vhead></vhead>
+  
+    <router-view></router-view>
+    <play></play>
+  
+  </div>
 </template>
 
 <script>
-  var pixelRatio = 1 / window.devicePixelRatio;
-	document.write('<meta name="viewport" content="width=device-width,initial-scale='+ pixelRatio +',minimum-scale='+ pixelRatio +',maximum-scale='+ pixelRatio +',user-scalable=no" />')
-	var html=document.getElementsByTagName("html")[0];
-	var pageWidth=html.getBoundingClientRect().width;
-	html.style.fontSize=pageWidth/16+"px";
+
+var pixelRatio = 1 / window.devicePixelRatio;
+document.write('<meta name="viewport" content="width=device-width,initial-scale=' + pixelRatio + ',minimum-scale=' + pixelRatio + ',maximum-scale=' + pixelRatio + ',user-scalable=no" />')
+var html = document.getElementsByTagName("html")[0];
+var pageWidth = html.getBoundingClientRect().width;
+html.style.fontSize = pageWidth / 16 + "px";
 
 import vhead from './components/head/head';
 import play from "./components/play/play"
@@ -28,9 +27,9 @@ export default {
     play,
     side,
   },
-  data(){
-    return{
-      side:false,
+  data() {
+    return {
+      side: false,
 
 
     }
@@ -43,11 +42,11 @@ export default {
 <style lang="less">
 @import '/static/font-awesome/css/font-awesome.min.css';
 @import '/static/base.css';
-@rem:40rem;
+@rem: 40rem;
+#app{
+  
 
-
-
-
+}
 </style>
 
 

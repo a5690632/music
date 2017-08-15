@@ -1,7 +1,7 @@
 <template>
   <ul class="menu">
         <li class="index" >
-              <router-link to="/content/index" class="tab">首页 </router-link>
+            <router-link to="/content/index" class="tab">首页 </router-link>
 
         </li>
         <li class="song-list" >

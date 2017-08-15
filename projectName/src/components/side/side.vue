@@ -146,6 +146,7 @@
                     width:100% ;
                     position:relative;
                     overflow: hidden;
+                    background:"http://p1.music.126.net/VTW4vsN08vwL3uSQqPyHqg==/2002210674180199.jpg" ;
                     dt{
                         width:105/@rem;
                         height:105/@rem;
