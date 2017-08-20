@@ -85,7 +85,7 @@
 </script>  
 <style lang="less" scoped>
     @rem:40rem;
-  .swiper-box {
+    .swiper-box {
     width: 100%;
     height:314/@rem ;
     margin: 0 auto;
@@ -94,14 +94,12 @@
     float: left;
     height:314/@rem ;
     text-align: center;
- 
-    background: #fff;
+
+    background: red;
     width: 100%;
     float: left;
   
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+
     display: flex;
     
     justify-content: center;

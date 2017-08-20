@@ -1,6 +1,6 @@
 <template>
 <div class="header">
-  <span class="side"  @click="side" >
+  <span class="side" @click="side" >
     <i class="fa fa-align-justify"></i>
   </span>
 
@@ -28,10 +28,6 @@ export default {
     }
   },
   methods:{
-    side(){
-        this.$emit("side" ,"true")
-
-    },
     music(){
 
 
@@ -40,20 +36,29 @@ export default {
 
 
     },
+    side(){
+      this.$store.commit("side",true)
+
+    }
 
 
+  },
+  computed:{
+    
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
+<style lang="less"  secoped>
      @rem:40rem;
     .header{
       width:100% ;
       height:120/@rem;
       background-color:#d33a32 ;
-      position: relative;
+      position: fixed;
+      top: 0;
+      z-index: 2;
 
     }
     .side{

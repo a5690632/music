@@ -30,7 +30,7 @@ name: 'menu',
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 
 
 
@@ -39,8 +39,7 @@ name: 'menu',
           width:100% ;
           height:60/@rem ;
           display: flex;
-            
-
+          background: white;
     }
     .menu li{
         height:60/@rem;

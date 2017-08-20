@@ -1,8 +1,8 @@
 <template>
-    <div id="content">
+    <div id="content" class="clearfix">
   
-        <vmenu></vmenu>
-        <router-view></router-view>
+        <vmenu class="menu"></vmenu>
+        <router-view class="content"></router-view>
     </div>
 </template>
 <script>
@@ -26,8 +26,23 @@ export default {
 
 }
 </script>
+<style lang="less" scoped>
+    @rem:40rem;
+    .menu{
+      position: fixed;
+      z-index: 2;
+   
+    }
+    #content{
+      margin-top:120/@rem; 
+      overflow: hidden;
+    }
+    .content{
+        
+      margin-top:60/@rem;
+      margin-bottom:96/@rem ;
 
-<style>
-
+    }
 </style>
+
 

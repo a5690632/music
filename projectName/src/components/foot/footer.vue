@@ -1,0 +1,99 @@
+<template>
+  <div id="footer">
+    <dl class="clearfix">
+        <dt class="songimg"></dt>
+        <dd class="musicmessage">
+          <p class="songname"></p>
+          <p class="musican"></p>
+
+        </dd>
+    </dl>
+
+    <span id="player">
+      <i class="fa fa-play"></i>
+
+    </span>
+    <span id="list">
+
+      <i class="fa fa-list"></i>
+    </span>
+  </div>
+
+</template>
+<script>
+export default {
+  data(){
+    return{
+
+
+    }
+
+
+  }
+}
+</script>
+<style lang="less" scoped>
+@rem:40rem;
+  #footer{
+      height: 96/@rem;
+      width: 100%;
+      background-color: #ffffff;
+      position: fixed;
+      bottom: 0;
+      
+  }
+
+  .songimg{
+      width:96/@rem ;
+      height:100% ;
+      float: left;
+
+  }
+  .songimg img{
+    width:74/@rem ;
+    height:74/@rem ;
+    margin:10/@rem auto
+
+  }
+  .musicmessage{
+    margin-left:10/@rem;
+    float: left;
+    height: 100%;
+    width:340/@rem ;
+    font-size:20/@rem ;
+    overflow: hidden;
+
+  }
+  .musicmessage p:nth-child(1){
+      color: #3c3c3c;
+      margin-top:20/@rem;
+      margin-bottom:15/@rem ;
+      height: 20/@rem;
+      line-height: 20/@rem;
+
+
+
+  }
+  .musicmessage p:nth-child(2){
+      color:#8e8e8e;
+      height: 20/@rem;
+      line-height: 20/@rem;
+
+  }
+  #player{
+    position: absolute;
+    right:104/@rem;
+    top: 22/@rem;
+    
+
+  }
+  
+  #list{
+    position: absolute;
+    right:23/@rem;
+    top: 22/@rem;
+
+  }
+  </style>
+
+

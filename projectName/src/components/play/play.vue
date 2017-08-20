@@ -1,18 +1,12 @@
 <template>
-  <div id="play">
-
-
-
-  </div>
-
+    <div>></div>
 </template>
 <script>
 export default {
-  
+                                                                                                                                                                   
 }
-</script>
-<style>
+</script>                                  
+<style lang="less" scoped>
 
 </style>
-
 

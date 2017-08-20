@@ -1,10 +1,10 @@
 <template>
-    <div id="side">
-        <div class="return"><i class="fa fa-reply returnimg"></i></div>
+    <div id="side" >
+        <div class="return" @click="close"><i class="fa fa-reply returnimg"></i></div>
 
-        <dl>
+        <dl :style="{background:background}">
             <dt>
-                <img src="./user.png" class="musicimg">
+                <img :src="src" class="musicimg">
                 
               
             </dt>
@@ -80,6 +80,8 @@
     </div>
 </template>
 <script>
+   import api from "../../api/api"
+  
    
 
     export default {
@@ -87,8 +89,11 @@
          
         data(){
             return{
-                user:"我不愿一个人",
+                user:localStorage.getItem("user"),
                 lv:"Lv.8",
+                background:localStorage.getItem("background"),
+                src:localStorage.getItem("src"),
+                userid:localStorage.getItem("userid"),
                 mine:[
                   
                     {message:"我的消息",class:"fa fa-envelope-o"},
@@ -114,25 +119,60 @@
                 ],
             }
 
-        }
-    }
+        },
+        mounted(){
+            this.getLoginCellphoneResource();
+
+        },
+        methods:{
+            close(){
+               
+                this.$store.commit("side",false)
+
+            },
+            getLoginCellphoneResource(){
+                
+            api.getLoginCellphoneResource().then((response)=>{
+              
+               
+
+                localStorage.setItem("user",response.data.profile.nickname);
+                localStorage.setItem("background","url("+response.data.profile.backgroundUrl+")");
+                localStorage.setItem("src",response.data.profile.avatarUrl);
+                localStorage.setItem("userid",response.data.profile.userId);
+               
+
+
+
+            })
+            
+
+
+        },
+        
+    }}
 </script>
-<style lang="less">
+<style lang="less" scoped>
+
+
         @rem:40rem;
         #side{
                 overflow:hidden;
-                position: absolute;
+                position: fixed;
                 width:540/@rem ;
                 height:100% ;
                 z-index:99;
                 font-size: 22/@rem;
                 background:#f2f4f5;
+                top: 0;
+
 
         }
         .return{
             position: absolute;
             right:50/@rem;
             top: 120/@rem;
+            z-index: 2
             
         }
         .returnimg{
