@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <swiper>
+    <swiper :options="swiperOption"  ref="mySwiper" class="clearfix swiper-box" >
         <swiper-slide v-for="item in img"  class="swiper-item">
           <img :src="item['pic']">
           
@@ -9,13 +9,11 @@
 
 
     </swiper>
-    <div class="day">
-
-    </div>
+    
       <div class="recommend-resource">
         <h1>推荐歌单</h1>
        <ul  >
-          <li v-for="item in list">  
+          <li v-for="item in list"   @click="getPlaylistDetailResource(item['id'])">  
             <img :src="item['picUrl']">
             <h2>{{item['name']}}</h2>
           </li>
@@ -30,8 +28,8 @@
         <h1>最新音乐</h1>
          <ul >
           <li v-for="item in newsong">
-            <img>
-            <h2></h2>
+            <img :src="item['song']['album']['picUrl']">
+            <h2>{{item['name']}}</h2>
           </li>
 
         </ul>
@@ -42,8 +40,8 @@
       <h1>推荐mv</h1>
       <ul >
           <li  v-for="item in mv">
-            <img>
-            <h2></h2>
+            <img :src="item['picUrl']">
+            <h2>{{item['name']}}</h2>
           </li>
 
       </ul>
@@ -56,13 +54,14 @@
  
 
 
-import {swiperSlide} from 'vue-awesome-swiper';
-import swiper from "../common/swiper";
+import {swiperSlide ,swiper} from 'vue-awesome-swiper';
+
 import api from "../../api/api";
 export default {
   name:"index",
   components: {
     swiper,
+    swiperSlide,
   },
   data(){
       return{
@@ -70,6 +69,16 @@ export default {
           newsong:[],
           mv:[],
           img:[],
+          swiperOption:{
+              
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              paginationClickable :true,
+              mousewheelControl : false,
+              observeParents:true,
+
+        }
       }
 
 
@@ -79,6 +88,7 @@ export default {
     this.getNewSong() 
     this.getPersonalizedMv()
     this.getbanner()
+ 
   },
 
   methods:{
@@ -106,7 +116,7 @@ export default {
       
       getNewSong(){
         api.getNewSong().then(response=>{
-          this.newsong=response.data.result
+          this.newsong=response.data.result.slice(0, 6);
 
         })
 
@@ -118,6 +128,15 @@ export default {
 
 
           })
+
+      },
+      getPlaylistDetailResource(id){
+         this.$router.push({
+          path: '/playLists/' + id
+        });
+         this.$store.commit("playlist",id)
+
+
 
       }
 
@@ -135,17 +154,13 @@ export default {
     
     background-color: #f3f4f6;
   }
-  .day{
-    width:100%;
-    height: 198/@rem;
-    border-bottom: 1/@rem solid #dfe0e2; 
-    display: flex;
-    background-color: red;
+    .swiper-box{
+      width: 100%;
+      overflow: hidden;
 
-
-  }
+    }
    .swiper-item {
-    float: left;
+  
     height:314/@rem ;
     text-align: center;
 
@@ -154,81 +169,95 @@ export default {
     float: left;
   
 
-    display: flex;
-    
-    justify-content: center;
-   
-    align-items: center;
+ 
   }
   .swiper-item img{
     width: 100%;
     height: 100%;
 
   }
-  .recommend-resource{
+  .recommend-resource ,.personalized-newsong{
       width: 100%;
-      height: 870/@rem;
+      height: 680/@rem;
     
-     background-color: green;
+   
 
   }
-  #index ul{
+  .recommend-resource ul ,.personalized-newsong ul{
     display: flex;
-
+    height:600/@rem ;
+    width: 100%;
+    flex-wrap: wrap;
+    
   }
+   .recommend-resource li,.personalized-newsong li{
+      width:210/@rem ;
+      flex-grow:1;
+   
+      
+   }
+  
+
   #index h1{
-    font-size: 30/@rem;
+    font-size: 22/@rem;
     color:#303231 ;
     font-weight: bold;
     padding-left:20/@rem;
-    height: 86/@rem;
-    line-height: 86/@rem;
-
+    height: 80/@rem;
+    line-height: 80/@rem;
+    
   }
- 
+
+
   
-  .recommend-resource img{
-      width:268/@rem ;
-      height:268/@rem ;
+  .recommend-resource img , .personalized-newsong img{
+      width:210/@rem ;
+      height:210/@rem ;
 
 
 
   }
   #index h2{
     color:#3a3c3b ;
-    padding-left: 12/@rem;
     font-size: 20/@rem;
-    text-align: center;
+    
     margin: auto;
     font-weight: bold;
-  }
+    height:76/@rem;
+    padding-top: 10/@rem
 
-  .personalized-newsong{
-      width: 100%;
-      height: 840/@rem;
-     
-      background-color: blue;
-       overflow: hidden;
+ 
 
   }
-  .personalized-newsong img{
-      width:268/@rem ;
-      height:268/@rem ;
 
-
-
-  }
+  
+  
   .personalized-mv{
      width: 100%;
    
-     background-color: pink;
-    height: 768/@rem
+     
+    height: 640/@rem
   }
+
   .personalized-mv  img{
-      width:404/@rem ;
-      height:228/@rem ;
+      width:318/@rem ;
+      height:180/@rem ;
 
 
+
+  }
+  .personalized-mv ul{
+      display: flex;
+      flex-wrap: wrap;
+      height:520/@rem ;
+      
+
+
+  }
+  .personalized-mv li{
+      flex-grow:1;
+      width: 320/@rem
+      
 
   }
 </style>

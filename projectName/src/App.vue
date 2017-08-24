@@ -2,8 +2,11 @@
   <div id="app">
      <div v-show="isShowIndex" class="index clearfix">
         <side v-show="side"></side>
-        <vhead></vhead>
-        <router-view></router-view>
+      
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+        
         <vfooter></vfooter>
       </div>
 
@@ -31,14 +34,14 @@ var html = document.getElementsByTagName("html")[0];
 var pageWidth = html.getBoundingClientRect().width;
 html.style.fontSize = pageWidth / 16 + "px";
 
-import vhead from './components/head/head';
+
 import vfooter from "./components/foot/footer"
 import side from "./components/side/side"
 import play from "./components/play/play"
 export default {
   name: 'app',
   components: {
-    vhead,
+
     play,
     side,
     vfooter,
