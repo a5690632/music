@@ -1,15 +1,15 @@
 <template>
   <div id="footer">
     <dl class="clearfix">
-        <dt class="songimg"></dt>
+        <dt class="songimg"><img :src="data.albumPic" v-show="data.albumPic"></dt>
         <dd class="musicmessage">
-          <p class="songname"></p>
-          <p class="musican"></p>
+          <p class="songname">{{data.name}}</p>
+          <p class="musican">{{data.singer}}</p>
 
         </dd>
     </dl>
 
-    <span id="player">
+      <span id="player" @click="isplay">
       <i class="fa fa-play"></i>
 
     </span>
@@ -21,6 +21,7 @@
 
 </template>
 <script>
+ 
 export default {
   data(){
     return{
@@ -29,7 +30,26 @@ export default {
     }
 
 
+  },
+  computed:{
+      data(){
+        return this.$store.state.audio
+      },
+      play(){
+
+        return this.$store.state.isplay
+      }
+     
+
+
+  },
+  methods:{
+     isplay(){
+        this.$store.commit("play",!this.$store.state.isplay)
+
+      }
   }
+
 }
 </script>
 <style lang="less" scoped>

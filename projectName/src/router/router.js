@@ -5,7 +5,7 @@ import Router from 'vue-router';
 
 import content from "components/content/content.vue"
 import search from "components/search/search"
-
+import playlist from "components/playlist/playlist"
 Vue.use(Router);
 
 export default new Router({
@@ -25,7 +25,14 @@ export default new Router({
             path: "/search",
             component: search,
 
-        }
+        },
+        {
+            path: "/playLists:id",
+            component: playlist,
+
+        },
+
+
 
 
 

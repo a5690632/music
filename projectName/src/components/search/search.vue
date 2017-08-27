@@ -12,7 +12,7 @@
         <swiperSlide class="swiper-item">
 
              <ul class="song">
-                     <li v-for="item in song"   @click="getmusicResource(item.id)">
+                     <li v-for="item in song"   @click="getmusicResource(item.id,item.name,item.artists[0].name,item.album.name,item.album.blurPicUrl)">
 
                         <h3>{{item.name}}</h3>
 
@@ -160,11 +160,12 @@ export default {
             this.swiper.slideTo(index, 0, false);  
 
         },
-        getmusicResource(id,neme,singer,album,imgurl){
+        getmusicResource(id,name,singer,album,imgurl){
             this.id=id
+            console.log(name)
             
            api.getMusicUrlResource(id,name,singer,album,imgurl).then(Response=>{
-           
+              
                this.$store.commit("playMusic",{
                     id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
 
@@ -174,7 +175,9 @@ export default {
                     id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
 
 
-               })
+               }),
+               this.$store.commit("play",true)
+
 
 
            }),
@@ -224,6 +227,7 @@ export default {
         border-bottom: 2/@rem solid  white;
         font-size: 26/@rem;
         color:white;
+       
 
 
 
@@ -248,6 +252,7 @@ export default {
         position: fixed;
         z-index: 10;
         top: 120/@rem;
+         background: white;
 
     }
     .menu li{

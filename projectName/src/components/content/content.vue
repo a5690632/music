@@ -30,7 +30,7 @@
                  
                  
             </swiper>
-            <audio :src="src" autoplay></audio>
+            <audio :src="src" autoplay id="audio"></audio>
           
             
            
@@ -48,7 +48,7 @@
 import index from "../index/index";
 import list from "../list/list"
 import rank from "../ranking/rank"
-
+ import {mapMutations, mapState, mapGetters} from 'vuex'
 import vhead from "../head/head"
 import {swiperSlide ,swiper} from 'vue-awesome-swiper';
 export default {
@@ -97,7 +97,31 @@ export default {
             }, 
      src(){
        return  this.$store.state.audio.url
-     }
+     },
+     ...mapState({
+        play:state=>state.isplay
+       
+     })
+      
+
+
+     
+
+
+  },
+  watch:{
+    play(val){
+      if(val){
+        alert(1)
+        document.getElementById("audio").play()
+
+      }else{
+        document.getElementById("audio").pause()
+        alert(2)
+      }
+
+
+    }
 
 
   }

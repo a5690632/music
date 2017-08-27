@@ -20,12 +20,13 @@ const store = new Vuex.Store({　
         lylic: "",
         endtime: "",
         playlist: [],
+        isplay: true,
 
     },
 
     mutations: {
         side(state, flag) {
-            state.side = flag ``
+            state.side = flag
         },
         playlist(state, flag) {
             state.playlist = flag
@@ -38,7 +39,7 @@ const store = new Vuex.Store({　
             state.audio.singer = payload.singer
             state.audio.url = payload.url
             state.audio.album = payload.album
-            state.audio.imgurl = payload.imgurl
+            state.audio.albumPic = payload.imgurl
 
         },
         addmusic(state, payload) {
@@ -58,7 +59,11 @@ const store = new Vuex.Store({　
 
 
         },
+        play(state, flag) {
+            state.isplay = flag
 
+
+        }
 
 
 
