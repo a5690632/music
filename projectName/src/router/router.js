@@ -27,7 +27,7 @@ export default new Router({
 
         },
         {
-            path: "/playLists:id",
+            path: "/playLists/:id",
             component: playlist,
 
         },

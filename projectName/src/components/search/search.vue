@@ -162,7 +162,7 @@ export default {
         },
         getmusicResource(id,name,singer,album,imgurl){
             this.id=id
-            console.log(name)
+         
             
            api.getMusicUrlResource(id,name,singer,album,imgurl).then(Response=>{
               

@@ -99,7 +99,7 @@ export default {
        return  this.$store.state.audio.url
      },
      ...mapState({
-        play:state=>state.isplay
+        playing:state=>state.isplay
        
      })
       
@@ -110,14 +110,15 @@ export default {
 
   },
   watch:{
-    play(val){
+     playing(val){
+     
       if(val){
-        alert(1)
         document.getElementById("audio").play()
-
+        alert(1)
       }else{
-        document.getElementById("audio").pause()
         alert(2)
+        document.getElementById("audio").pause()
+        
       }
 
 

@@ -132,9 +132,9 @@ export default {
       },
       getPlaylistDetailResource(id){
          this.$router.push({
-          path: '/playLists'+id,
+          path: '/playLists/'+id,
         });
-         this.$store.commit("playlist",id)
+      
 
 
 

@@ -20,7 +20,8 @@ const store = new Vuex.Store({　
         lylic: "",
         endtime: "",
         playlist: [],
-        isplay: true,
+        isplay: false,
+
 
     },
 
@@ -63,7 +64,7 @@ const store = new Vuex.Store({　
             state.isplay = flag
 
 
-        }
+        },
 
 
 

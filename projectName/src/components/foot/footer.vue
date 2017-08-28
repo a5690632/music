@@ -5,7 +5,7 @@
         <dd class="musicmessage">
           <p class="songname">{{data.name}}</p>
           <p class="musican">{{data.singer}}</p>
-
+       
         </dd>
     </dl>
 
@@ -44,10 +44,12 @@ export default {
 
   },
   methods:{
-     isplay(){
-        this.$store.commit("play",!this.$store.state.isplay)
-
-      }
+    tapButton(event) {
+        event.preventDefault()
+        this.playing ? this.pause() : this.play()
+         this.$store.commit("play",!this.$store.state.isplay)
+      },
+    
   }
 
 }
