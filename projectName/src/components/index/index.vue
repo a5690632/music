@@ -13,7 +13,7 @@
       <div class="recommend-resource">
         <h1>推荐歌单</h1>
        <ul  >
-          <li v-for="item in list"   @click="getPlaylistDetailResource(item['id'])">  
+          <li v-for="item in list"   @touchstart="getPlaylistDetailResource(item['id'])">  
             <img :src="item['picUrl']">
             <h2>{{item['name']}}</h2>
           </li>

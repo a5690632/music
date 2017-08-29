@@ -9,7 +9,7 @@
         </dd>
     </dl>
 
-      <span id="player" @click="isplay">
+      <span id="player" @touchstart="tapButton">
       <i class="fa fa-play"></i>
 
     </span>
@@ -45,12 +45,13 @@ export default {
   },
   methods:{
     tapButton(event) {
-        event.preventDefault()
-        this.playing ? this.pause() : this.play()
-         this.$store.commit("play",!this.$store.state.isplay)
+      
+  
+          this.$store.commit("play",!this.$store.state.isplay)
+          this.$store.commit("dom",)
       },
     
-  }
+  } 
 
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div id="side" >
-        <div class="return" @click="close"><i class="fa fa-reply returnimg"></i></div>
+        <div class="return" @touchstart="close"><i class="fa fa-reply returnimg"></i></div>
 
         <dl :style="{background:background}">
             <dt>

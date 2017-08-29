@@ -1,15 +1,15 @@
 <template>
 <div class="header">
-  <span class="side" @click="side" >
+  <span class="side" @touchstart="side" >
     <i class="fa fa-align-justify"></i>
   </span>
 
-  <span class="music" @click="music" >
+  <span class="music" @touchstart="music" >
     <router-link to="/content"><img src="./music.png"></router-link></router-link>
    
   </span>
 
-<span class="search" @click="search" >
+<span class="search" @touchstart="search" >
   <router-link to="/search"><i class="fa fa-search">  </i></router-link>
 
 

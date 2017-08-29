@@ -21,7 +21,7 @@ const store = new Vuex.Store({　
         endtime: "",
         playlist: [],
         isplay: false,
-
+        DOM: [],
 
     },
 
@@ -65,8 +65,21 @@ const store = new Vuex.Store({　
 
 
         },
+        findDOM(state, payload) {
+            state.DOM[payload.name] = payload.dom;
+        },
+        dom(state) {
+            if (!state.isplay) {
+                state.DOM.audio.pause()
+
+            } else {
+                state.DOM.audio.play();
+
+            }
 
 
+
+        }
 
 
 

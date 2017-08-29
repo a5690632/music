@@ -3,16 +3,16 @@
     <div class="top">
         <span class="close"> <i class="fa fa-reply returnimg"></i> </span>
         <input type="text" class="search" v-model="txt"> 
-        <span class="enter" @click="search(txt)"><i class="fa fa-search"></i> </span>
+        <span class="enter" @touchstart="search(txt)"><i class="fa fa-search"></i> </span>
     </div>
     <ul class="menu" v-show="menu">
-        <li v-for="(item,index) in message" @click="tab(index)">{{item.message}}</li>
+        <li v-for="(item,index) in message" @touchstart="tab(index)">{{item.message}}</li>
     </ul>
     <swiper  :options="swiperOption"  ref="mySwiper" class="swiper-box">
         <swiperSlide class="swiper-item">
 
              <ul class="song">
-                     <li v-for="item in song"   @click="getmusicResource(item.id,item.name,item.artists[0].name,item.album.name,item.album.blurPicUrl)">
+                     <li v-for="item in song"   @touchstart="getmusicResource(item.id,item.name,item.artists[0].name,item.album.name,item.album.blurPicUrl)">
 
                         <h3>{{item.name}}</h3>
 

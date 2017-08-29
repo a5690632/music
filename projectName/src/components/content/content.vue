@@ -3,7 +3,7 @@
 
         <vhead></vhead>
         <ul class="menu" >
-              <li v-for="(item,index) in list " @click="tab(index)">
+              <li v-for="(item,index) in list " @touchstart="tab(index)">
 
 
 
@@ -30,7 +30,7 @@
                  
                  
             </swiper>
-            <audio :src="src" autoplay id="audio"></audio>
+            <audio :src="src" autoplay  ref="audio"></audio>
           
             
            
@@ -90,6 +90,7 @@ export default {
       this.swiper.slideTo(index, 0, false);  
 
     }
+    
   },
   computed:{
     swiper() {  
@@ -109,20 +110,8 @@ export default {
 
 
   },
-  watch:{
-     playing(val){
-     
-      if(val){
-        document.getElementById("audio").play()
-        alert(1)
-      }else{
-        alert(2)
-        document.getElementById("audio").pause()
-        
-      }
-
-
-    }
+ mounted(){
+      this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio});
 
 
   }

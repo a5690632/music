@@ -1,21 +1,14 @@
 <template>
-  <div class="playlist">
-      <div class="message" >
-        <div class="title">
-            <span class="close"><i class=""></i></span>
-            <h2>歌单</h2>
-
-
-        </div>
-
+  <div class="ranklist">
+      <div class="message">
         <dl class="list-message clearfix" >
-            <dt class="list-img"><img :src="message.picUrl"></dt>
+            <dt class="list-img"><img :src="rankmessage.creator.avatarUrl"></dt>
             <dd class="music-message">
-                <h3>{{message.name}}</h3>
-                <p>{{message.creator.nickname}}</p>
+                <h3>{{rankmessage.name}}</h3>
+                <p>{{rankmessage.creator.nickname}}</p>
             </dd>
         </dl>
-        <ul class="menu" >
+          <ul class="menu" >
             <li v-for="item in menu">
                 <p><i :class="item.class"></i></p>
                 <p>{{item.message}} </p>
@@ -24,11 +17,11 @@
         </ul>
       </div>
         <ul class="list">
-            <li v-for="(item,index) in list" @touchstart="getmusicResource(item.id,item.name,item.ar[0].name,item.al.name,item.al.picUrl)">
+            <li v-for="(item,index) in ranklist" @touchstart="getmusicResource(item.id,item.name,item.artists[0].name,item.album.name,item.album.picUrl)">
                 <div class="index">{{index+1}}</div>
                 <div class="songmessage">
                     <p class="songname">{{item.name}}</p>
-                    <p class="singer">{{item.ar[0].name}}</p>	
+                    <p class="singer"><span v-for="items in item.artists">{{items.name}}</span></p>	
                 </div>
 
             </li>
@@ -37,14 +30,12 @@
 
   </div>
 </template>
-
 <script>
 import api from "../../api/api"
 export default {
     data(){
         return{
-           
-            menu:[
+             menu:[
                     {message:"收藏",class:"fa "},
                     {message:"评论", class:"fa "},
                     {message:"分享",class:"fa "},
@@ -53,32 +44,14 @@ export default {
                 
 
             ],
-            message:[],
+           rankmessage :[],
             
-            list:[],
+            ranklist:[],
 
         }
-
     },
     methods:{
-        getPlaylistDetailResource(){
-        
-            api.getPlaylistDetailResource(this.$route.params.id).then(Response=>{
-                
-                this.message=Response.data.playlist
-                this.list=Response.data.playlist.tracks
-     
-               
-
-             
-    
-
-                
-
-            }
-
-            )},
-        getmusicResource(id,name,singer,album,imgurl){
+         getmusicResource(id,name,singer,album,imgurl){
            
          
             
@@ -106,55 +79,46 @@ export default {
 
            })
 
-        }
-      
-    },
-    created (){
-       this.getPlaylistDetailResource()
+        },
+         getrank(){
+         api.getTopListResource(this.$route.params.id).then(Response=>{
+              this.rankmessage = Response.data.result;
+              this.ranklist = Response.data.result.tracks
+          
+              
+         })
+
+       },
 
     },
-    watch: {
-    // 如果路由有变化，会再次执行该方法
-    '$route'(){
-         this.getPlaylistDetailResource(this.$route.params.id)
+    created(){
+        this.getrank()
 
+    },
+    watch:{
+         '$route'(){
+         this.getrank(this.$route.params.id)
+
+         }
     }
-    
-    },
-   
-
 }
 </script>
 <style lang="less" scoped>
     @rem:40rem;
     .message{
-        width:100% ;
-        height:426/@rem ;
-      
+        width:100%;
+        height:426/@rem;
+        background-color:#6a99d1 ;
+        overflow: hidden;
 
     }
-    .title{
-        height: 126/@rem;
-        position:relative;
-    }
-    .title span{
-        position: absolute;
-        top:60/@rem ;
-        left:28/@rem ;
-
-    }
-    .title h2{
-        font-size: 24/@rem;
-        position: absolute;
-        top: 66/@rem;
-        left:88/@rem ;
-
-
-    }
+   
     .list-message{
+        margin-top:100/@rem ;
         padding-left: 34/@rem;
         width: 100%;
         height: 196/@rem;
+        margin-bottom:50/@rem; 
     }
    .list-img{
        float: left;
@@ -192,7 +156,7 @@ export default {
 
 
    }
-   .menu{
+    .menu{
        display: flex;
         width: 100%;
        margin-top: 10/@rem;
@@ -263,4 +227,3 @@ export default {
 
    }
 </style>
-
