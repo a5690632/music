@@ -144,3 +144,7 @@ img {
 .fr {
     float: right;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}

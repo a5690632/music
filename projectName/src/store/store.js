@@ -9,8 +9,8 @@ const store = new Vuex.Store({　
         side: false,
         audio: {
             id: "",
-            name: '',
-            singer: '',
+            name: 'asd',
+            singer: 'asd',
             albumPic: '',
             url: '',
             album: ''
@@ -22,6 +22,9 @@ const store = new Vuex.Store({　
         playlist: [],
         isplay: false,
         DOM: [],
+        isShowIndex: true,
+        showlist: false,
+        index: 0,
 
     },
 
@@ -43,6 +46,15 @@ const store = new Vuex.Store({　
             state.audio.albumPic = payload.imgurl
 
         },
+        togglemusic(state, index) {
+            state.audio.id = state.playlist[index].id
+            state.audio.name = state.playlist[index].name
+            state.audio.singer = state.playlist[index].singer
+            state.audio.url = state.playlist[index].url
+            state.audio.album = state.playlist[index].album
+            state.audio.albumPic = state.playlist[index].imgurl
+
+        },
         addmusic(state, payload) {
             state.playlist.push(payload)
 
@@ -59,6 +71,9 @@ const store = new Vuex.Store({　
 
 
 
+        },
+        index(state, flag) {
+            state.index = flag
         },
         play(state, flag) {
             state.isplay = flag
@@ -78,6 +93,13 @@ const store = new Vuex.Store({　
             }
 
 
+
+        },
+        isShowIndex(state, flag) {
+            state.isShowIndex = flag;
+        },
+        showlist(state, flag) {
+            state.showlist = flag
 
         }
 

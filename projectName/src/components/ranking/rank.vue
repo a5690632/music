@@ -108,7 +108,10 @@ export default {
               this.hotsong = Response.data.result;
               this.hotlist = Response.data.result.tracks.slice(0, 3);
 
-         })
+         }) 
+         .catch((response) => {
+          console.log(response);
+        });
 
        },
        getnewsong(){
@@ -116,7 +119,10 @@ export default {
               this.newsong = Response.data.result;
               this.newlist = Response.data.result.tracks.slice(0, 3);
               console.log(this.data)
-         })
+         }) 
+         .catch((response) => {
+          console.log(response);
+        })
 
        },
          getoriginalsong(){
@@ -125,6 +131,9 @@ export default {
               this.originallist = Response.data.result.tracks.slice(0, 3);
 
          })
+          .catch((response) => {
+          console.log(response);
+        });
 
        },
          getsurgesong(){
@@ -132,7 +141,10 @@ export default {
               this.surgesong = Response.data.result;
               this.surgelist = Response.data.result.tracks.slice(0, 3);
 
-         })
+         }) 
+         .catch((response) => {
+          console.log(response);
+        });
 
        },
        jump(id){

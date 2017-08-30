@@ -71,13 +71,19 @@ export default {
 
 
 
-           }),
+           })
+           .catch((response) => {
+            console.log(response);
+            }),
            api.getLyricResource(id).then(Response=>{
              
                this.$store.commit("addlylic",Response.data.lrc.lyric)
 
 
-           })
+           }) 
+           .catch((response) => {
+          console.log(response);
+            });
 
         },
          getrank(){
@@ -86,7 +92,10 @@ export default {
               this.ranklist = Response.data.result.tracks
           
               
-         })
+         }) 
+         .catch((response) => {
+          console.log(response);
+        });
 
        },
 

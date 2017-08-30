@@ -77,7 +77,12 @@ export default {
 
             }
 
-            )},
+            )   
+            .catch((response) => {
+             console.log(response);
+            })
+
+            },
         getmusicResource(id,name,singer,album,imgurl){
            
          
@@ -95,16 +100,23 @@ export default {
 
                }),
                this.$store.commit("play",true)
+              this.$store.commit("index",this.$store.state.playlist.length)
 
 
-
-           }),
+           })
+        .catch((response) => {
+            console.log(response);
+            }),
            api.getLyricResource(id).then(Response=>{
              
                this.$store.commit("addlylic",Response.data.lrc.lyric)
 
 
-           })
+           })   
+           .catch((response) => {
+                console.log(response);
+            })
+
 
         }
       

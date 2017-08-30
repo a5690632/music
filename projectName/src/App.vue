@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-     <div v-show="isShowIndex" class="index clearfix">
-        <side v-show="side"></side>
+     <div v-show="isShowIndex" class="index clearfix" >
+        <side v-show="side" ></side>
       
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
         
-        <vfooter></vfooter>
+          <router-view></router-view>
+    
+        
+        <vfooter ></vfooter>
       </div>
 
       
       <play v-show="!isShowIndex"></play>
+      <list v-show="showlist"></list>
   
   
   
@@ -34,14 +35,14 @@ var html = document.getElementsByTagName("html")[0];
 var pageWidth = html.getBoundingClientRect().width;
 html.style.fontSize = pageWidth / 16 + "px";
 
-
+import list from "./components/musiclist//musiclist"
 import vfooter from "./components/foot/footer"
 import side from "./components/side/side"
 import play from "./components/play/play"
 export default {
   name: 'app',
   components: {
-
+    list,
     play,
     side,
     vfooter,
@@ -49,19 +50,28 @@ export default {
   data() {
     return {
    
-      isShowIndex:true,
+      
    
     }
     
 
   },
+  methods:{
+     
+   },
   computed:{
     side(){
       
       return this.$store.state.side
 
-    }
+    },
+    isShowIndex(){
+      return this.$store.state.isShowIndex
+    },
+    showlist(){
+      return this.$store.state.showlist
 
+    }
   }
 }
 </script>
@@ -70,10 +80,7 @@ export default {
 @import '/static/font-awesome/css/font-awesome.min.css';
 @import '/static/base.css';
 @rem: 40rem;
-#app{
-  
 
-}
 </style>
 
 

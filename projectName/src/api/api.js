@@ -208,7 +208,7 @@ export default {
         return axios.get(TopPlaylistResource, {
             params: {
                 order: order || 'hot',
-                limit: limit || 50,
+                limit: limit || 20,
                 offset: offset || 0
             }
         });

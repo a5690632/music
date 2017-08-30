@@ -1,6 +1,6 @@
 <template>
-  <div id="footer">
-    <dl class="clearfix">
+  <div id="footer" class="clearfix">
+    <dl class="clearfix"  @click="showplay">
         <dt class="songimg"><img :src="data.albumPic" v-show="data.albumPic"></dt>
         <dd class="musicmessage">
           <p class="songname">{{data.name}}</p>
@@ -13,9 +13,9 @@
       <i class="fa fa-play"></i>
 
     </span>
-    <span id="list">
+    <span id="list" @touchstart="show">
 
-      <i class="fa fa-list"></i>
+      <i class="fa fa-list" ></i>
     </span>
   </div>
 
@@ -38,8 +38,8 @@ export default {
       play(){
 
         return this.$store.state.isplay
-      }
-     
+      },
+  
 
 
   },
@@ -50,7 +50,14 @@ export default {
           this.$store.commit("play",!this.$store.state.isplay)
           this.$store.commit("dom",)
       },
-    
+    showplay(){
+     
+      this.$store.commit("isShowIndex",false)
+    },
+    show(){
+       this.$store.commit("showlist",true)
+    }
+
   } 
 
 }
