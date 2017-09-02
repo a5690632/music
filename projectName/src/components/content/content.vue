@@ -30,7 +30,7 @@
                  
                  
             </swiper>
-            <audio :src="src" autoplay  ref="audio"></audio>
+          
           
             
            
@@ -96,9 +96,7 @@ export default {
     swiper() {  
               return this.$refs.mySwiper.swiper;  
             }, 
-     src(){
-       return  this.$store.state.audio.url
-     },
+     
      ...mapState({
         playing:state=>state.isplay
        
@@ -111,7 +109,7 @@ export default {
 
   },
  mounted(){
-      this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio});
+    
 
 
   }
