@@ -1,9 +1,10 @@
 <template>
   <div class="ranklist">
       <div class="message">
+        <span class="fanhui" @touchstart="fanhui"><i class="fa fa-reply returnimg"></i></span>
         <dl class="list-message clearfix" >
-            <dt class="list-img"><img :src="rankmessage.creator.avatarUrl"></dt>
-            <dd class="music-message">
+            <dt class="list-img" v-if="rankmessage.creator.avatarUrl"><img v-lazy="rankmessage.creator.avatarUrl"></dt>
+            <dd class="music-message" v-if="rankmessage">
                 <h3>{{rankmessage.name}}</h3>
                 <p>{{rankmessage.creator.nickname}}</p>
             </dd>
@@ -51,24 +52,25 @@ export default {
         }
     },
     methods:{
+        fanhui(){
+            this.$router.go(-1);
+           
+            
+        },
          getmusicResource(id,name,singer,album,imgurl){
            
          
             
            api.getMusicUrlResource(id,name,singer,album,imgurl).then(Response=>{
               
-               this.$store.commit("playMusic",{
-                    id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
-
-
-               }),
+               
                 this.$store.commit("addmusic",{
                     id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
 
 
                }),
-               this.$store.commit("play",true)
-
+               this.$store.commit("play",true),
+                this.$store.commit("playMusic")
 
 
            })
@@ -121,7 +123,12 @@ export default {
         overflow: hidden;
 
     }
-   
+    .fanhui{
+        position: absolute;
+        left:30/@rem;
+        top: 30/@rem
+
+    }
     .list-message{
         margin-top:100/@rem ;
         padding-left: 34/@rem;

@@ -14,8 +14,6 @@ const store = new Vuex.Store({　
             albumPic: '',
             url: '',
             album: ''
-
-
         },
         lylic: "",
         endtime: "",
@@ -24,7 +22,7 @@ const store = new Vuex.Store({　
         DOM: [],
         isShowIndex: true,
         showlist: false,
-        index: 0,
+        index:0,
 
     },
 
@@ -37,29 +35,73 @@ const store = new Vuex.Store({　
 
 
         },
-        playMusic(state, payload) {
-            state.audio.id = payload.id
-            state.audio.name = payload.name
-            state.audio.singer = payload.singer
-            state.audio.url = payload.url
-            state.audio.album = payload.album
-            state.audio.albumPic = payload.imgurl
+        playMusic(state) {
+            state.audio.id = state.playlist[state.index].id
+            state.audio.name = state.playlist[state.index].name
+            state.audio.singer = state.playlist[state.index].singer
+            state.audio.url = state.playlist[state.index].url
+            state.audio.album = state.playlist[state.index].album
+            state.audio.albumPic = state.playlist[state.index].imgurl
+        },
+        removeall(state){
+            state.playlist=[]
+            stat.audio={
+                id: "",
+                name: 'asd',
+                singer: 'asd',
+                albumPic: '',
+                url: '',
+                album: ''
+    
+    
+            },
+            state.isplay=false;
 
         },
-        togglemusic(state, index) {
-            state.audio.id = state.playlist[index].id
-            state.audio.name = state.playlist[index].name
-            state.audio.singer = state.playlist[index].singer
-            state.audio.url = state.playlist[index].url
-            state.audio.album = state.playlist[index].album
-            state.audio.albumPic = state.playlist[index].imgurl
+        remove(state,index){
+            state.playlist.splice(index,1)
+            state.audio.url = state.playlist[index-1].url
+            if(state.playlist.length==0){
+                stat.audio={
+                    id: "",
+                    name: 'asd',
+                    singer: 'asd',
+                    albumPic: '',
+                    url: '',
+                    album: ''
+        
+        
+                }
+                state.isplay=false;
 
+            }
         },
-        addmusic(state, payload) {
-            state.playlist.push(payload)
+       
+       addmusic(state, payload) {
+        if(state.playlist.length==0){
+            state.playlist.push(payload);
+        }
+        let items = Array.prototype.concat.call(payload);
+        items.forEach(item => {
+            let flag = false;
+            state.playlist.forEach(function(element, index) { // 检测歌曲重复
+                if (element.id === item.id) {
+                    flag = true;
 
-
-        },
+                    
+                }
+            });
+            if (!flag) {
+                state.playlist.push(item);
+                state.index=state.playlist.length-1;
+          
+            }
+        })
+           
+            
+       
+            },
+       
         addlylic(state, flag) {
             if (flag) {
                 state.lylic = "暂无歌词"
@@ -105,7 +147,7 @@ const store = new Vuex.Store({　
 
 
 
-    },
+        },
     actions: {
 
 

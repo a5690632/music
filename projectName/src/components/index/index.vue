@@ -2,7 +2,7 @@
   <div id="index">
     <swiper :options="swiperOption"  ref="mySwiper" class="clearfix swiper-box" >
         <swiper-slide v-for="item in img"  class="swiper-item">
-          <img :src="item['pic']">
+          <img v-lazy="item['pic']">
           
          
         </swiper-slide>
@@ -14,7 +14,7 @@
         <h1>推荐歌单</h1>
        <ul  >
           <li v-for="item in list"   @touchstart="getPlaylistDetailResource(item['id'])">  
-            <img :src="item['picUrl']">
+            <img v-lazy="item['picUrl']">
             <h2>{{item['name']}}</h2>
           </li>
 
@@ -27,8 +27,8 @@
       <div class="personalized-newsong">
         <h1>最新音乐</h1>
          <ul >
-          <li v-for="item in newsong">
-            <img :src="item['song']['album']['picUrl']">
+          <li v-for="item in newsong" >
+            <img v-lazy="item['song']['album']['picUrl']">
             <h2>{{item['name']}}</h2>
           </li>
 
@@ -40,7 +40,7 @@
       <h1>推荐mv</h1>
       <ul >
           <li  v-for="item in mv">
-            <img :src="item['picUrl']">
+            <img v-lazy="item['picUrl']">
             <h2>{{item['name']}}</h2>
           </li>
 

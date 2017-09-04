@@ -4,7 +4,7 @@
        <h3>官方榜</h3>
        <dl class="crearfix"  @touchstart="jump('0')">
           <dt>
-              <img :src="newsong.coverImgUrl">
+              <img v-lazy="newsong.coverImgUrl">
           </dt>
           <dd>
             <ul>
@@ -18,7 +18,7 @@
        </dl>
         <dl class="crearfix"  @touchstart="jump('1')">
           <dt>
-              <img :src="hotsong.coverImgUrl">
+              <img v-lazy="hotsong.coverImgUrl">
           </dt>
           <dd>
             <ul>
@@ -32,7 +32,7 @@
        </dl>
         <dl class="crearfix"  @touchstart="jump('3')">
           <dt>
-              <img :src="surgesong.coverImgUrl">
+              <img v-lazy="surgesong.coverImgUrl">
           </dt>
           <dd>
             <ul>
@@ -46,7 +46,7 @@
        </dl>
         <dl class="crearfix" @touchstart="jump('2')" >
           <dt>
-              <img :src=" originalsong.coverImgUrl">
+              <img v-lazy=" originalsong.coverImgUrl">
           </dt>
           <dd>
             <ul>
@@ -65,7 +65,7 @@
       <h3>全球榜</h3>
       <ul >
         <li v-for="item in qiyu" @touchstart="jump(item.idx)">
-            <img :src="item.coverImageUrl">
+            <img v-lazy="item.coverImageUrl">
             <h5>{{item.title}}</h5>
         </li>
 
@@ -118,7 +118,7 @@ export default {
          api.getTopListResource(0).then(Response=>{
               this.newsong = Response.data.result;
               this.newlist = Response.data.result.tracks.slice(0, 3);
-              console.log(this.data)
+           
          }) 
          .catch((response) => {
           console.log(response);

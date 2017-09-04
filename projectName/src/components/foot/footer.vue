@@ -1,7 +1,7 @@
 <template>
   <div id="footer" class="clearfix">
     <dl class="clearfix"  @click="showplay">
-        <dt class="songimg"><img :src="data.albumPic" v-show="data.albumPic"></dt>
+        <dt class="songimg"><img v-lazy="data.albumPic" v-show="data.albumPic"></dt>
         <dd class="musicmessage">
           <p class="songname">{{data.name}}</p>
           <p class="musican">{{data.singer}}</p>
@@ -10,7 +10,7 @@
     </dl>
 
       <span id="player" @touchstart="tapButton">
-      <i class="fa fa-play"></i>
+      <i class="fa fa-play" :class="[!play? 'fa fa-play':'fa fa-pause' ]"></i>
 
     </span>
     <span id="list" @touchstart="show">
@@ -18,10 +18,10 @@
       <i class="fa fa-list" ></i>
     </span>
   </div>
-
+  
 </template>
 <script>
- 
+
 export default {
   data(){
     return{
@@ -31,6 +31,7 @@ export default {
 
 
   },
+ 
   computed:{
       data(){
         return this.$store.state.audio
@@ -55,6 +56,7 @@ export default {
       this.$store.commit("isShowIndex",false)
     },
     show(){
+      
        this.$store.commit("showlist",true)
     }
 

@@ -7,7 +7,7 @@
         <ul>
             <li v-for="item in list">
                 <dl @touchstart="jump(item.id)">
-                    <dt><img :src="item.coverImgUrl"></dt>
+                    <dt><img v-lazy="item.coverImgUrl"></dt>
                     <dd><p>{{item.name}}</p></dd>
                     
 

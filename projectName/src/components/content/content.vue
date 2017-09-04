@@ -139,7 +139,7 @@ export default {
      }
     .menu{
       position: fixed;
-      z-index: 2;
+      z-index: 2; 
     }
     #content{
       margin-top:120/@rem; 

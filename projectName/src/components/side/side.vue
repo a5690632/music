@@ -4,7 +4,7 @@
 
         <dl :style="{background:background}">
             <dt>
-                <img :src="src" class="musicimg">
+                <img v-lazy="src" class="musicimg">
                 
               
             </dt>

@@ -1,7 +1,7 @@
 <template>
   <div id="search">
     <div class="top">
-        <span class="close"> <i class="fa fa-reply returnimg"></i> </span>
+        <span class="close" @touchstart="close"> <i class="fa fa-reply returnimg"></i> </span>
         <input type="text" class="search" v-model="txt"> 
         <span class="enter" @touchstart="search(txt)"><i class="fa fa-search"></i> </span>
     </div>
@@ -155,6 +155,7 @@ export default {
 
 
         },
+        
         tab(index){
     
             this.swiper.slideTo(index, 0, false);  
@@ -166,18 +167,14 @@ export default {
             
            api.getMusicUrlResource(id,name,singer,album,imgurl).then(Response=>{
               
-               this.$store.commit("playMusic",{
-                    id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
-
-
-               }),
+            
                 this.$store.commit("addmusic",{
                     id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
 
 
                }),
-               this.$store.commit("play",true)
-
+               this.$store.commit("play",true),
+                this.$store.commit("playMusic")
 
 
            }),
@@ -188,7 +185,10 @@ export default {
 
            })
 
-        }
+        },
+        close(){
+            this.$router.go(-1)
+        },
       
 
     },

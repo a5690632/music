@@ -14,33 +14,39 @@
         </div>
         <div class="img">
             <img src="../../../static/images/backcd.png" class="back">
-            <img :src="data.audio.albumPic" class="albumPic">
+            <img  v-if="data.audio.albumPic" :src="data.audio.albumPic" class="albumPic">
 
         </div>
         <div class="gundongtiao">
-            <span>3:00</span>
-            <div class="gundong">
-                <div class="jindutiao"></div>    
+            <span>{{starttime}}</span>
+            <div class="gundong"  @touchstart="end"  @touchmove="move($event)" ref="progressBar" >
+                <div class="jindutiao"   :style="{width:kuan+'%'}"></div>    
 
 
             </div>
-            <span>3:00</span>
+            <span >{{endtime}}</span>
         </div>
         <div class="menu">
             <div class="loop"><i class="fa fa-random"></i></div>
             <div class="prev" @touchstart="prev(data.index)"><i class="fa fa-step-backward"></i></div>
-            <div class="play" @touchstart="tapButton"><i class="fa fa-play" ></i></div>
+            <div class="play" @touchstart="tapButton" ><i class="fa fa-play" :class="[!isplay? 'fa fa-play':'fa fa-pause' ]"></i></div>
             <div class="next" @touchstart="next(data.index)"><i class="fa fa-step-forward"></i></div>
             <div class="musiclist" @touchstart="show"><i class="fa fa-list"></i></div>
         </div>
+        <showlist v-if="showlist"></showlist>
         </div>
     </div>
     
 </template>
 <script>
+import showlist from "../showlist/showlist"
 export default {
     data(){
         return{
+            starttime:"0:00",
+            endtime:"0:00",
+            kuan:"0",
+            
            
         }
     },
@@ -48,20 +54,56 @@ export default {
         data(){
             return this.$store.state
         },
+        dom(){
+            return this.$store.state.DOM
+        },
+        showlist(){
+            return this.$store.state.showlist
+        },
+        isplay(){
+            return this.$store.state.isplay
+        },
+       
         
     },
+    components:{
+        showlist,
+    },
     methods:{
+        end($event){
+            let progressBar = this.$refs.progressBar;
+            let coordStart = progressBar.getBoundingClientRect().left;
+           
+            let move=($event.touches[0].clientX-coordStart)/490
+            if(move>=1){
+                move=1;
+            }
+            this.dom.audio.currentTime=this.dom.audio.duration*move
+            this.kuan=move*100
+           
+        },
+
+        time(seconds){
+            let f,m;
+            f=Math.floor(seconds/60) 
+            m=Math.floor(seconds-f*60)
+            if(m.toString().length==1){
+                m="0"+m
+            }
+           return f + ':' + m;
+
+        },
         close(){
              this.$store.commit("isShowIndex",true)
         },
         tapButton(event) {
-      
-  
+            
+            console.log(this.isplay)
           this.$store.commit("play",!this.$store.state.isplay)
           this.$store.commit("dom",)
       },
       show(){
-       this.$store.commit("showlist",true)
+        this.$store.commit("showlist",true)
         },
         prev(index){
             
@@ -71,10 +113,10 @@ export default {
             }else{
                index=index-1;
             }
+
              this.$store.commit("index",index)
-            
-              console.log(this.data.playlist.length)
-            this.$store.commit("togglemusic",index)
+           
+              this.$store.commit("playMusic")
            
         },
          next(index){
@@ -85,18 +127,47 @@ export default {
                  index=index+1;
             }
              this.$store.commit("index",index)
-            console.log(this.data.playlist.length)
-             this.$store.commit("togglemusic",index)
+            console.log(index)
+              this.$store.commit("playMusic")
            
             
+        },
+       
+        move(e){
+            let progressBar = this.$refs.progressBar;
+            let coordStart = progressBar.getBoundingClientRect().left;
+           
+            let move=(e.touches[0].clientX-coordStart)/490
+            if(move>=1){
+                move=1;
+            }
+            this.dom.audio.currentTime=this.dom.audio.duration*move
+            this.kuan=move*100
+           
         }
          
     },
     mounted(){
-      
+        setInterval(()=>{
+            this.kuan=this.dom.audio.currentTime/this.dom.audio.duration*100
+            this.starttime=this.time(this.dom.audio.currentTime)
+            if(this.dom.audio.duration){
+                this.endtime=this.time(this.dom.audio.duration)
+            }
+            
+           
+        },500)
+        
+            
+             
 
-    }
+        
+       
+    
 
+    },
+    
+   
 }
 
 
@@ -188,12 +259,12 @@ export default {
         margin: auto;
     }
     .gundong{
-        width:490/@rem ;
-        height: 4/@rem;
+        width:460/@rem ;
+        height: 10/@rem;
         background-color: #3e3d3d;
         margin-top:40/@rem;
-        margin-left:5/@rem ;
-        margin-right: 5/@rem;
+        margin-left:10/@rem ;
+        margin-right: 20/@rem;
         position: relative;
         float: left;
 
@@ -203,13 +274,28 @@ export default {
         height:20/@rem ;
         font-size:20/@rem ;
         float: left;
-        margin-top:30/@rem; 
+        margin-top:30/@rem;
+         
     }
     .jindutiao{
         position:absolute;
-        height: 4/@rem;
+        height: 10/@rem;
         background-color:red;
         width: 0/@rem;
+       
+        
+    }
+    .jindutiao::after{
+        content:"";
+        position:absolute;
+        top: 50%;
+        right: -20/@rem;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        width:20/@rem;
+        height:20/@rem;
+        border-radius:50%;
+        background-color:#c52f30;
     }
 </style>
 

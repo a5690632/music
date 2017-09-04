@@ -1,5 +1,6 @@
 <template>
   <div class="playlist">
+      <span @touchstart="fanhui"> <i class="fa fa-reply returnimg"></i></span>
       <div class="message" >
         <div class="title">
             <span class="close"><i class=""></i></span>
@@ -9,7 +10,7 @@
         </div>
 
         <dl class="list-message clearfix" >
-            <dt class="list-img"><img :src="message.picUrl"></dt>
+            <dt class="list-img"><img v-lazy="message.picUrl"></dt>
             <dd class="music-message">
                 <h3>{{message.name}}</h3>
                 <p>{{message.creator.nickname}}</p>
@@ -61,6 +62,11 @@ export default {
 
     },
     methods:{
+        fanhui(){
+            this.$router.go(-1);
+           
+            
+        },
         getPlaylistDetailResource(){
         
             api.getPlaylistDetailResource(this.$route.params.id).then(Response=>{
@@ -89,19 +95,16 @@ export default {
             
            api.getMusicUrlResource(id,name,singer,album,imgurl).then(Response=>{
               
-               this.$store.commit("playMusic",{
-                    id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
-
-
-               }),
+             
+                   
                 this.$store.commit("addmusic",{
                     id:id,name:name,singer:singer,album:album,imgurl:imgurl,url:Response.data.data[0]["url"]
 
 
                }),
-               this.$store.commit("play",true)
-              this.$store.commit("index",this.$store.state.playlist.length)
 
+               this.$store.commit("play",true),
+               this.$store.commit(" playMusic")
 
            })
         .catch((response) => {

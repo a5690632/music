@@ -7,15 +7,17 @@
           <router-view></router-view>
     
         
-        <vfooter ></vfooter>
+        <vfooter v-if="data.audio.id"></vfooter>
       </div>
 
       
       <play v-show="!isShowIndex"></play>
-      <list v-show="showlist"></list>
+      <showlist v-show="showlist"></showlist>
   
   
-  
+      
+      <audio :src="src" autoplay  ref="audio"></audio>
+
   
   
   
@@ -34,26 +36,31 @@ document.write('<meta name="viewport" content="width=device-width,initial-scale=
 var html = document.getElementsByTagName("html")[0];
 var pageWidth = html.getBoundingClientRect().width;
 html.style.fontSize = pageWidth / 16 + "px";
+import showlist from "./components/showlist/showlist"
 
-import list from "./components/musiclist//musiclist"
 import vfooter from "./components/foot/footer"
 import side from "./components/side/side"
 import play from "./components/play/play"
 export default {
   name: 'app',
   components: {
-    list,
+    showlist,
     play,
     side,
     vfooter,
+    showlist,
   },
   data() {
     return {
-   
+      data:this.$store.state
       
    
     }
     
+
+  },
+  mounted(){
+  this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio});
 
   },
   methods:{
@@ -71,7 +78,10 @@ export default {
     showlist(){
       return this.$store.state.showlist
 
-    }
+    },
+    src(){
+       return  this.$store.state.audio.url
+     },
   }
 }
 </script>
