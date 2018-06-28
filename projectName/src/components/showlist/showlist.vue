@@ -28,7 +28,6 @@ export default {
     methods:{
 
       show(){
-        
           this.$store.commit("showlist",false)
       },
       play(){
@@ -56,9 +55,6 @@ export default {
         position: fixed;
         bottom: 0;
         width:100% ;
-        
-
-
     }
     li {
        height:70/@rem ;

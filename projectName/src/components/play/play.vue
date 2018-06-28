@@ -1,7 +1,6 @@
 <template>
     <div  class="play">
        <div class="touming"    :style="{backgroundImage: 'url(' + data.audio.albumPic+ ')'}">
-
        </div>
         <div class="content">
             <div class="message">
@@ -10,7 +9,6 @@
                 <h3>{{data.audio.name}}</h3>
                 <h4>{{data.audio.singer}}</h4>
             </div>
-            
         </div>
         <div class="img">
             <img src="../../../static/images/backcd.png" class="back">
@@ -21,8 +19,6 @@
             <span>{{starttime}}</span>
             <div class="gundong"  @touchstart="end"  @touchmove="move($event)" ref="progressBar" >
                 <div class="jindutiao"   :style="{width:kuan+'%'}"></div>    
-
-
             </div>
             <span >{{endtime}}</span>
         </div>
@@ -46,8 +42,6 @@ export default {
             starttime:"0:00",
             endtime:"0:00",
             kuan:"0",
-            
-           
         }
     },
     computed:{
@@ -64,7 +58,6 @@ export default {
             return this.$store.state.isplay
         },
        
-        
     },
     components:{
         showlist,
@@ -74,7 +67,7 @@ export default {
             let progressBar = this.$refs.progressBar;
             let coordStart = progressBar.getBoundingClientRect().left;
            
-            let move=($event.touches[0].clientX-coordStart)/490
+            let move=($event.touches[0].clientX-coordStart)/progressBar.getBoundingClientRect().width
             if(move>=1){
                 move=1;
             }
@@ -97,8 +90,6 @@ export default {
              this.$store.commit("isShowIndex",true)
         },
         tapButton(event) {
-            
-            console.log(this.isplay)
           this.$store.commit("play",!this.$store.state.isplay)
           this.$store.commit("dom",)
       },
@@ -106,8 +97,6 @@ export default {
         this.$store.commit("showlist",true)
         },
         prev(index){
-            
-          
             if(index-1<0){
                 index=0;
             }else{
@@ -137,7 +126,7 @@ export default {
             let progressBar = this.$refs.progressBar;
             let coordStart = progressBar.getBoundingClientRect().left;
            
-            let move=(e.touches[0].clientX-coordStart)/490
+            let move=(e.touches[0].clientX-coordStart)/progressBar.getBoundingClientRect().width
             if(move>=1){
                 move=1;
             }
@@ -154,20 +143,9 @@ export default {
             if(this.dom.audio.duration){
                 this.endtime=this.time(this.dom.audio.duration)
             }
-            
-           
         },500)
-        
-            
-             
-
-        
-       
-    
-
     },
-    
-   
+
 }
 
 

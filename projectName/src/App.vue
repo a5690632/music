@@ -2,30 +2,12 @@
   <div id="app">
      <div v-show="isShowIndex" class="index clearfix" >
         <side v-show="side" ></side>
-      
-        
           <router-view></router-view>
-    
-        
         <vfooter v-if="data.audio.id"></vfooter>
       </div>
-
-      
       <play v-show="!isShowIndex"></play>
       <showlist v-show="showlist"></showlist>
-  
-  
-      
       <audio :src="src" autoplay  ref="audio"></audio>
-
-  
-  
-  
-  
-  
-  
-  
-  
   </div>
 </template>
 
@@ -37,7 +19,6 @@ var html = document.getElementsByTagName("html")[0];
 var pageWidth = html.getBoundingClientRect().width;
 html.style.fontSize = pageWidth / 16 + "px";
 import showlist from "./components/showlist/showlist"
-
 import vfooter from "./components/foot/footer"
 import side from "./components/side/side"
 import play from "./components/play/play"

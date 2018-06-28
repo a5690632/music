@@ -4,17 +4,9 @@
         <vhead></vhead>
         <ul class="menu" >
               <li v-for="(item,index) in list " @touchstart="tab(index)">
-
-
-
                 {{item}}
               </li>
-
-
-
         </ul>
-
-
             <swiper :options="swiperOption"  ref="mySwiper" class="swiper-box">  
          
             <swiper-slide class="swiper-item">
@@ -26,21 +18,7 @@
              <swiper-slide class="swiper-item">
                 <rank class="content"></rank>
             </swiper-slide>
-
-                 
-                 
             </swiper>
-          
-          
-            
-           
-            
-
-
-       
-         
-       
-        
     </div>
 </template>
 <script>
@@ -56,13 +34,11 @@ export default {
   name:"content",
   components:{
     vhead,
-  
     index,
     list,
     rank,
     swiper,
     swiperSlide,
-
   },
   data(){
     return{
@@ -79,8 +55,6 @@ export default {
         list:[
           "首页","歌单","排行"
         ]
-
-
     }
 
   },
